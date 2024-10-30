@@ -45,17 +45,15 @@ $ pnpm run start:dev
 $ pnpm run start:prod
 ```
 
-## Run tests
+## .env
 
 ```bash
-# unit tests
-$ pnpm run test
-
-# e2e tests
-$ pnpm run test:e2e
-
-# test coverage
-$ pnpm run test:cov
+# exemplo
+POSTGRES_USER="tltnuser"
+POSTGRES_PASSWORD="tltnpass"
+POSTGRES_DB="tltndb"
+DATABASE_URL="postgres://tltnuser:tltnpass@postgres:5432/tltndb"
+PORT = 3000
 ```
 
 ## Deployment
