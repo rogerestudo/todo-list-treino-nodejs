@@ -11,7 +11,7 @@ model ToDoList {
   id     Int        @id @default(autoincrement())
   title  String
   todo   String
-  status ToDoStatus
+  status ToDoStatus @default(PENDING)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt()
@@ -20,5 +20,5 @@ model ToDoList {
 enum ToDoStatus {
   CANCELED
   DONE
-  PEDDING
+  PENDING
 }
