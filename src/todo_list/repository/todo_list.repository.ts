@@ -28,4 +28,11 @@ export class TodoListRepository implements ITodoListRepository {
       status: task.status as ToDoStatus,
     }));
   }
+
+  public async deleteTaskById(id: number): Promise<void> {
+    const result = await this.prismaService.toDoList.delete(
+      { where: {id}, }
+    )
+    return
+  }
 }
