@@ -5,4 +5,5 @@ import { ToDoStatus } from '../helpers/task_status_enum.helper';
 export interface ITodoListRepository {
   createTask(task: CreateTaskDto): Promise<ToDoList>;
   getTaskByStatus(statusTask: ToDoStatus): Promise<ToDoList[]>;
+  deleteTaskById(id: number): Promise<void>;
 }
