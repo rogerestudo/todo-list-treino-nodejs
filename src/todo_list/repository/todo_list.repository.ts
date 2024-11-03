@@ -30,9 +30,7 @@ export class TodoListRepository implements ITodoListRepository {
   }
 
   public async deleteTaskById(id: number): Promise<void> {
-    const result = await this.prismaService.toDoList.delete(
-      { where: {id}, }
-    )
-    return
+    const result = await this.prismaService.toDoList.delete({ where: { id } });
+    return;
   }
 }

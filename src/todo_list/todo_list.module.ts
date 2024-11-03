@@ -15,7 +15,7 @@ import { DeleteTaskByIdUseCase } from './use_cases/delete_task_by_id.use_case';
       useExisting: TodoListRepository,
     },
     CreateTaskUseCase,
-    DeleteTaskByIdUseCase
+    DeleteTaskByIdUseCase,
   ],
 })
 export class TodoListModule {}

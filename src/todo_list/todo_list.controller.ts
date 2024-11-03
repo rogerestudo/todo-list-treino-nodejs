@@ -1,4 +1,14 @@
-import { Body, Controller, Delete, Get, HttpCode, Inject, Param, Post, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  Inject,
+  Param,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { CreateTaskUseCase } from './use_cases/create_task.use_case';
 import { CreateTaskDto } from './dto/create_task.dto';
 import { ApiTags } from '@nestjs/swagger';
@@ -15,7 +25,6 @@ export class TodoListController {
   @Inject()
   private readonly findTaskByStatusUseCase: FindTaskByStatusUseCase;
 
-
   @Inject()
   private readonly deleteTaskByIdUseCase: DeleteTaskByIdUseCase;
 
@@ -31,7 +40,7 @@ export class TodoListController {
 
   @HttpCode(204)
   @Delete('delete/:id')
-  public async deleteTaskById(@Param('id') id: number): Promise<void>{
+  public async deleteTaskById(@Param('id') id: number): Promise<void> {
     return await this.deleteTaskByIdUseCase.execute(id);
   }
 }
