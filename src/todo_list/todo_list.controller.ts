@@ -17,6 +17,20 @@ import { ToDoStatus } from './helpers/task_status_enum.helper';
 import { DeleteTaskByIdUseCase } from './use_cases/delete_task_by_id.use_case';
 import { GetTaskByIdUseCase } from './use_cases/get_task_by_id.use_case';
 import { ToDoList } from './entities/todo_list.entity';
+import { ListAllTasksUseCase } from './use_cases/list_all_tasks.use_case';
+
+/*
+Descrição
+7. Listar Todas as Tarefas
+
+    Como usuário, quero ser capaz de visualizar todas as tarefas na lista para gerenciar meus afazeres.
+
+        Endpoint: GET /task/getAll
+
+        Campos:
+
+        Critérios de Aceitação: Deve retornar Status HTTP 200.
+*/
 
 @ApiTags('ToDoList')
 @Controller('task')
@@ -33,9 +47,17 @@ export class TodoListController {
   @Inject()
   private readonly getTaskByIdUseCase: GetTaskByIdUseCase;
 
+  @Inject()
+  private readonly listAllTasksUseCase: ListAllTasksUseCase;
+
   @Post('create')
   public async createTask(@Body() task: CreateTaskDto) {
     return await this.createTaskUseCase.execute(task);
+  }
+
+  @Get('getAll')
+  public async listAllTasks(): Promise<ToDoList[]> {
+    return await this.listAllTasksUseCase.execute();
   }
 
   @Get()
@@ -45,7 +67,7 @@ export class TodoListController {
 
   @HttpCode(200)
   @Get('getTask/:id')
-  public async getTaskById(@Param('id') id: number): Promise<ToDoList>{
+  public async getTaskById(@Param('id') id: number): Promise<ToDoList> {
     return await this.getTaskByIdUseCase.execute(id);
   }
 
