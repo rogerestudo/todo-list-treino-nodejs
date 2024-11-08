@@ -18,6 +18,15 @@ export class TodoListRepository implements ITodoListRepository {
     return { ...result, status: result.status as ToDoStatus };
   }
 
+  public async listAllTask(): Promise<ToDoList[]> {
+    const result = await this.prismaService.toDoList.findMany();
+
+    return result.map((task) => ({
+      ...task,
+      status: task.status as ToDoStatus,
+    }));
+  }
+
   public async getTaskByStatus(status: ToDoStatus): Promise<ToDoList[]> {
     const result = await this.prismaService.toDoList.findMany({
       where: { status },
@@ -27,5 +36,17 @@ export class TodoListRepository implements ITodoListRepository {
       ...task,
       status: task.status as ToDoStatus,
     }));
+  }
+
+  public async deleteTaskById(id: number): Promise<void> {
+    const result = await this.prismaService.toDoList.delete({ where: { id } });
+    return;
+  }
+
+  public async getTaskById(id: number): Promise<ToDoList> {
+    const result = await this.prismaService.toDoList.findUnique({
+      where: { id },
+    });
+    return { ...result, status: result.status as ToDoStatus };
   }
 }
