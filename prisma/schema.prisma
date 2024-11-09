@@ -10,7 +10,7 @@ datasource db {
 model ToDoList {
   id     Int        @id @default(autoincrement())
   title  String
-  todo   String
+  todo   String?
   status ToDoStatus @default(PENDING)
 
   createdAt DateTime @default(now())
